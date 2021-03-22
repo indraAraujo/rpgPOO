@@ -1,0 +1,50 @@
+public void ataquesimples(){
+    int ataque = 12;
+    int defesa = 10;
+
+    Random rand = new Random();
+
+        int ataquesimples; 
+        int dano;
+
+        ataquesimples = rand.nextInt(this.ataque);
+
+        dano = ataquesimples - defesa;
+       
+  }
+  public void ataquecombo(){
+    int ataque = 14;
+    int poder = 5;
+    int defesa = 10;
+
+Random rand = new Random();
+
+        int ataquecombo; 
+        int dano;
+    ataquecombo = ran.nextInt(this.ataque);
+
+    dano =ataquecombo - defesa;
+    
+  }
+  public void usarpoder(){
+    
+    int poder = 18;
+    int defesa = 10;
+
+Random rand = new Random();
+
+    int usarpoder; 
+    int dano;
+        
+    usarpoder = ran.nextInt(this.pode);
+
+    dano = usarpoder - defesa;
+    
+  }
+ 
+public void cura(){
+  int cura = 10;
+
+  vida= cura;
+}
+
