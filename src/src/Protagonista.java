@@ -2,7 +2,7 @@ import src.exceptions.SemDinheiroException;
 
 public class Protagonista extends Personagem{
 	
-	private int dinheiro;
+	private double dinheiro;
 	private int cura;
 	
 	public Protagonista(int p, int v, int d, int a, int din, int c) {
@@ -11,7 +11,7 @@ public class Protagonista extends Personagem{
 		this.cura = c;
 	}
 
-	public int getDinheiro() {
+	public double getDinheiro() {
 		return dinheiro;
 	}
 
