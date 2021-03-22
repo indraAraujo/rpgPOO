@@ -1,0 +1,69 @@
+public abstract class atributos(){
+  private int ataquesimples;
+  private int ataquecombo;
+  private int defesa;
+  private int usarpoder;
+  private int cura;
+  private int vida;
+ 
+  public atributos(){
+    
+    this.pode=5;
+    this.ataque = 5;
+    this.defesa = 5;
+    this.ataquesimples= this.ataque;
+    this.ataquecombo = this.poder + this.ataque;
+    this.usarpoder = usarpoder;
+    this.cura = cura;
+    this.vida = 10;
+
+  public void setataquesimples (int ataquesimples){
+      this.ataquesimpes= ataquesimples;
+  }
+  public void setataquecombo(int ataquecombo){
+      this.ataquecombo = ataquecombo;
+  }
+
+  public void setDefesa (int defesa){
+      this.defesa = defesa;
+    }
+  public void setusarpoder(int usarpoder){
+      this.usarpoder=usarpoder;
+  }
+  public void setcura(int cura){
+      this.cura = cura;
+  }
+  public void servida(int vida){
+      this.vida=vida;
+  }
+
+
+  public void getataquesimples (int ataquesimples){
+      this.ataquesimpes= ataquesimples;
+  }
+  public void getataquecombo(int ataquecombo){
+      this.ataquecombo = ataquecombo;
+  }
+
+  public void getDefesa (int defesa){
+      this.defesa = defesa;
+    }
+  public void getusarpoder(int usarpoder){
+      this.usarpoder=usarpoder;
+  }
+  public void getcura(int cura){
+      this.cura = cura;
+  }
+  public void getvida(int vida){
+    this.vida=vida;
+  }
+  public void ataque(){
+  Random rand = new Random();
+
+        int ataquesimples; 
+
+        ataquesimples = rand.nextInt(this.pode)+this.ataque;
+
+  }
+}
+}
