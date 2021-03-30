@@ -1,3 +1,5 @@
+package src;
+
 
 public abstract class Personagem {
 
@@ -46,6 +48,6 @@ public abstract class Personagem {
 		this.ataque = ataque;
 	}
 	
-	//Métodos
+	//Mï¿½todos
 	
 }

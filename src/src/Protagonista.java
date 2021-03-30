@@ -1,3 +1,5 @@
+package src;
+
 import src.exceptions.SemDinheiroException;
 
 public class Protagonista extends Personagem{
@@ -15,7 +17,7 @@ public class Protagonista extends Personagem{
 		return dinheiro;
 	}
 
-	public void setDinheiro(int dinheiro) {
+	public void setDinheiro(double dinheiro) {
 		this.dinheiro = dinheiro;
 	}
 
@@ -28,32 +30,23 @@ public class Protagonista extends Personagem{
 	}
 	
 	 public void comprarCura()throws SemDinheiroException{
-	       double dinheiro=0.0;//variavel provisória
-	       int cura=0; //variavel provisória
-	       if(dinheiro > 2.5){
-	           dinheiro-=2.5;
-	           cura++;
+	       if(this.getDinheiro() > 2.5){
+	           this.setDinheiro(this.getDinheiro()-2.5);
+	           this.setCura(this.getCura()+1);
 	       }else throw new SemDinheiroException(2.5);
 	    }
 	    
 	    public void aumentarAtaque() throws SemDinheiroException{
-	        double dinheiro=0.0;//variavel provisória
-	        int ataque=0; //variavel provisória
-	        if(dinheiro > 3){
-	            dinheiro-=3;
-	            ataque++;
+	        
+	        if(this.getDinheiro()  > 3){
+	            this.setDinheiro(this.getDinheiro()-3);
+	            this.setAtaque(this.getAtaque()+1);
 	        }else throw new SemDinheiroException(3);
 	    }
 	    public void aumentarDefesa() throws SemDinheiroException{
-	        double dinheiro=0.0;//variavel provisória
-	        int defesa=0; //variavel provisória
-	        if(dinheiro > 3){
-	            dinheiro-=3;
-	            defesa++;
+	        if(this.getDinheiro()  > 3){
+	            this.setDinheiro(this.getDinheiro()-3);
+	            this.setDefesa(this.getDefesa()+1);
 	        }else throw new SemDinheiroException(3);
 	    }
-	}
-	
-	
-
 }
