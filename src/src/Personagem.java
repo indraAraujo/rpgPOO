@@ -1,8 +1,10 @@
 package src;
 
+import java.util.Random;
+
 
 public abstract class Personagem {
-
+        Random rand = new Random();
 	private int poder;
 	private int vida;
 	private int defesa;
@@ -48,6 +50,29 @@ public abstract class Personagem {
 		this.ataque = ataque;
 	}
 	
-	//M�todos
+	public void ataquesimples(){
+            int ataquesimples; 
+            int dano;
+
+            ataquesimples = rand.nextInt(this.getAtaque());
+
+            dano = ataquesimples - getDefesa();
+
+        }
+        public void ataquecombo(){
+            int ataquecombo; 
+            int dano;
+            ataquecombo = rand.nextInt(this.getAtaque());
+
+            dano =ataquecombo - getDefesa();
+        }
+        public void usarpoder(){
+          int usarpoder; 
+          int dano;
+
+          usarpoder = rand.nextInt(this.getPoder());
+
+          dano = usarpoder - getDefesa();
+        }
 	
 }
