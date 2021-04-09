@@ -5,18 +5,28 @@ import java.util.Random;
 
 public abstract class Personagem {
         Random rand = new Random();
+        private String nome;
 	private int poder;
 	private int vida;
 	private int defesa;
 	private int ataque;
 	//private int nivel;
 	
-	public Personagem(int p, int v, int d, int a) {
+	public Personagem(String n, int p, int v, int d, int a) {
+                nome=n;
 		this.poder = p;
 		this.ataque = a;
 		this.defesa = d;
 		this.vida = v;
 	}
+        
+        public String getNome(){
+            return nome;
+        }
+        
+        public void setNome(String n){
+            nome=n;
+        }
 
 	public int getPoder() {
 		return poder;
@@ -74,5 +84,9 @@ public abstract class Personagem {
 
           dano = usarpoder - getDefesa();
         }
-	
+        
+        public String toString(){
+            return "\n"+getNome()+"\nVIDA:  "+getVida()+"\nATAQUE:  "+getAtaque()+"\nDEFESA:  "+getDefesa();
+        }
+        
 }

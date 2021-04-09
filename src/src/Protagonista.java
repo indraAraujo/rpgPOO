@@ -1,17 +1,15 @@
 package src;
 
-import src.exceptions.SemDinheiroException;
 import src.exceptions.VidaCheiaException;
 
 public class Protagonista extends Personagem{
 	
 	private double dinheiro;
-	private int cura;
+	private int cura; //deve estar dentro da mochila
 	
-	public Protagonista(int p, int v, int d, int a, int din, int c) {
-		super(p, v, d, a);
+	public Protagonista(String n, int p, int v, int d, int a, int din) {
+		super(n, p, v, d, a);
 		this.dinheiro = din;
-		this.cura = c;
 	}
 
 	public double getDinheiro() {
@@ -55,4 +53,7 @@ public class Protagonista extends Personagem{
 	            this.setDefesa(this.getDefesa()+1);
 	        }else throw new SemDinheiroException(3);
 	    }*/
+       public String toString(){
+           return super.toString()+"\nDINHEIRO:  $"+getDinheiro();
+       }
 }

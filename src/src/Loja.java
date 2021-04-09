@@ -20,7 +20,7 @@ public class Loja{
         }
         public void comprarProduto(String nome, int qnt) throws QuantidadeInsuficienteException{
             for(Produto p: produtos){
-                if(p.getDesc()==nome){
+                if(p.getDesc().equals(nome)){
                     if(p.getQuantidade()<=qnt){
                         p.setquant(p.getQuantidade()-qnt);
                     } else throw new QuantidadeInsuficienteException(qnt);
