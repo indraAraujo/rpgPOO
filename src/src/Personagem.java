@@ -1,5 +1,3 @@
-package src;
-
 import java.util.Random;
 
 
@@ -84,6 +82,14 @@ public abstract class Personagem {
 
           dano = usarpoder - getDefesa();
         }
+        
+        public int levarDano() {
+        	int dano;
+        	int defesa;
+        
+        	this.vida = this.vida - dano;
+        }
+        
         
         public String toString(){
             return "\n"+getNome()+"\nVIDA:  "+getVida()+"\nATAQUE:  "+getAtaque()+"\nDEFESA:  "+getDefesa();
