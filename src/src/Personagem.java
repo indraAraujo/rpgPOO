@@ -10,12 +10,12 @@ public abstract class Personagem {
 	private int ataque;
 	//private int nivel;
 	
-	public Personagem(String n, int p, int v, int d, int a) {
+	public Personagem(String n, int p) {
                 nome=n;
 		this.poder = p;
-		this.ataque = a;
-		this.defesa = d;
-		this.vida = v;
+		this.ataque = 1;
+		this.defesa = 1;
+		this.vida = 5;
 	}
         
         public String getNome(){
@@ -58,13 +58,9 @@ public abstract class Personagem {
 		this.ataque = ataque;
 	}
 	
-	public void ataquesimples(){
-            int ataquesimples; 
-            int dano;
-
-            ataquesimples = rand.nextInt(this.getAtaque());
-
-            dano = ataquesimples - getDefesa();
+	public int ataquesimples(int ataque){
+           int ataqueSimples=ataque;
+            return  ataqueSimples - getDefesa();
 
         }
         public void ataquecombo(){
@@ -83,11 +79,8 @@ public abstract class Personagem {
           dano = usarpoder - getDefesa();
         }
         
-        public int levarDano() {
-        	int dano;
-        	int defesa;
-        
-        	this.vida = this.vida - dano;
+        public void levarDano(int dano) {
+            this.vida = this.vida - dano;
         }
         
         

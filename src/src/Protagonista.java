@@ -1,15 +1,16 @@
 package src;
 
+import java.util.Random;
 import src.exceptions.VidaCheiaException;
 
 public class Protagonista extends Personagem{
-	
+	Random rand = new Random();
 	private double dinheiro;
 	private int cura; //deve estar dentro da mochila
 	
-	public Protagonista(String n, int p, int v, int d, int a, int din) {
-		super(n, p, v, d, a);
-		this.dinheiro = din;
+	public Protagonista(String n, int p) {
+		super(n, p);
+		this.dinheiro = 0;
 	}
 
 	public double getDinheiro() {
@@ -29,11 +30,13 @@ public class Protagonista extends Personagem{
 	}
         
         public void usarCura()throws VidaCheiaException{
-            if(getVida()==5) throw new VidaCheiaException();
+            if(this.getVida()==5) throw new VidaCheiaException();
             else{
-                setVida(getVida()+getCura());
+                super.setVida(super.getVida()+getCura());
             }
         }
+        
+        
 	
 	/* public void comprarCura()throws SemDinheiroException{
 	       if(this.getDinheiro() > 2.5){
