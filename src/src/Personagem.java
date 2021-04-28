@@ -50,8 +50,8 @@ public abstract class Personagem {
 		this.defesa = defesa;
 	}
 
-	public int getAtaque() {
-		return ataque;
+	public int getAtaque(int nivel) {
+		return ataque=nivel;
 	}
 
 	public void setAtaque(int ataque) {
@@ -61,7 +61,6 @@ public abstract class Personagem {
 	public int ataquesimples(int ataque){
            int ataqueSimples=ataque;
             return  ataqueSimples - getDefesa();
-
         }
         public void ataquecombo(){
             int ataquecombo; 

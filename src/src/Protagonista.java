@@ -1,6 +1,7 @@
 package src;
 
 import java.util.Random;
+import src.exceptions.SemDinheiroException;
 import src.exceptions.VidaCheiaException;
 
 public class Protagonista extends Personagem{
@@ -30,15 +31,12 @@ public class Protagonista extends Personagem{
 	}
         
         public void usarCura()throws VidaCheiaException{
-            if(this.getVida()==5) throw new VidaCheiaException();
+            if(super.getVida()==5) throw new VidaCheiaException();
             else{
                 super.setVida(super.getVida()+getCura());
             }
         }
-        
-        
-	
-	/* public void comprarCura()throws SemDinheiroException{
+	public void comprarCura()throws SemDinheiroException{
 	       if(this.getDinheiro() > 2.5){
 	           this.setDinheiro(this.getDinheiro()-2.5);
 	           this.setCura(this.getCura()+1);
@@ -53,9 +51,9 @@ public class Protagonista extends Personagem{
 	    public void aumentarDefesa() throws SemDinheiroException{
 	        if(this.getDinheiro()  > 3){
 	            this.setDinheiro(this.getDinheiro()-3);
-	            this.setDefesa(this.getDefesa()+1);
+	            super.setDefesa(super.getDefesa()+1);
 	        }else throw new SemDinheiroException(3);
-	    }*/
+	    }
        public String toString(){
            return super.toString()+"\nDINHEIRO:  $"+getDinheiro();
        }

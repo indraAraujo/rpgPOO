@@ -11,13 +11,13 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.OverlayLayout;
+import src.Nivel;
 import src.Protagonista;
 import src.Vilao;
 
 
 public class SetUp extends JFrame implements ActionListener{
-    Protagonista protago = new Protagonista("Pessoa", 2);
-    Vilao vilao = new Vilao("Do Mal", 1);
+    Nivel nivelUm= new Nivel(new Protagonista("Pessoa", 2),new Vilao("Do Mal", 1));
    
     public SetUp() {
         defesa_b.addActionListener(this);
@@ -31,9 +31,11 @@ public class SetUp extends JFrame implements ActionListener{
         Random rand = new Random();
         JButton clicked = (JButton) event.getSource();
         if(clicked==ataqueS_b){
-            int dano=rand(5);
-            vilao.levarDano(protago.ataquesimples(dano));
-            vidaVilao.setText(vilao.getVida());
+            int dano=nivelUm.getNivel(4);
+            nivelUm.getVilao().levarDano(nivelUm.getProtagonista().ataquesimples(dano));
+            vidaVilao.setText(nivelUm.getVilao().getVida());
+            nivelUm.getProtagonista().levarDano(nivelUm.getVilao().getAtaque(dano));
+            vidaProtago.setText(nivelUm.getProtagonista().getVida());
         }
             
     }

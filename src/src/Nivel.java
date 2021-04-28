@@ -18,5 +18,23 @@ public class Nivel {
         nivel = rand.nextInt((capacidade - 1) + 1) + 1;
         return nivel;
     }
+
+    public Protagonista getProtagonista() {
+        return protagonista;
+    }
+
+    public void setProtagonista(Protagonista protagonista) {
+        this.protagonista = protagonista;
+    }
+
+    public Vilao getVilao() {
+        return vilao;
+    }
+
+    public void setVilao(Vilao vilao) {
+        this.vilao = vilao;
+    }
+    
+    
     
 }
