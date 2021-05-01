@@ -1,6 +1,4 @@
 
-package src;
-
 public class Produto{
 	private double preco;
 	private int quantidade;
@@ -9,32 +7,32 @@ public class Produto{
 	public Produto ( double p, int quant, Descricao desc){
 		preco = p;
 		quantidade= quant;
-                this.desc = desc;
+        this.desc = desc;
 	}
 
-	public void setquant(int q){
+	public void setQuantidade(int q){
 		quantidade = q;
 	}
         
-
-        public int getQuantidade() {
+	public int getQuantidade() {
             return quantidade;
-        }
+    }
 
-        public double getPreco() {
+    public double getPreco() {
             return preco;
-        }
+    }
 
-        public void setPreco(double preco) {
+    public void setPreco(double preco) {
             this.preco = preco;
-        }
-        public Descricao getDesc() {
+    }
+    
+    public Descricao getDesc() {
             return desc;
-        }
+    }
 
-        public void setDesc(Descricao desc) {
+    public void setDesc(Descricao desc) {
             this.desc = desc;
-        }
+    }
               
 	
 	public String toString(){

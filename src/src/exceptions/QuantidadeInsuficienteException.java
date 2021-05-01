@@ -1,5 +1,5 @@
+package exceptions;
 
-package src.exceptions;
 
 public class QuantidadeInsuficienteException extends Exception {
     public QuantidadeInsuficienteException(int qnt) {

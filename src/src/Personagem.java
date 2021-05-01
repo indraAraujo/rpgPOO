@@ -1,9 +1,6 @@
-import java.util.Random;
-
 
 public abstract class Personagem {
-        Random rand = new Random();
-        private String nome;
+    private String nome;
 	private int poder;
 	private int vida;
 	private int defesa;
@@ -11,20 +8,20 @@ public abstract class Personagem {
 	//private int nivel;
 	
 	public Personagem(String n, int p) {
-                nome=n;
-		this.poder = p;
-		this.ataque = 1;
-		this.defesa = 1;
-		this.vida = 5;
+        nome=n;
+		poder = p;
+		ataque = 1;
+		defesa = 1;
+		vida = 5;
 	}
         
-        public String getNome(){
-            return nome;
-        }
+    public String getNome(){
+      return nome;
+    }
         
-        public void setNome(String n){
-            nome=n;
-        }
+    public void setNome(String n){
+       nome=n;
+    }
 
 	public int getPoder() {
 		return poder;
@@ -50,41 +47,39 @@ public abstract class Personagem {
 		this.defesa = defesa;
 	}
 
-	public int getAtaque(int nivel) {
-		return ataque=nivel;
+	public int getAtaque() {
+		return ataque;
 	}
 
 	public void setAtaque(int ataque) {
 		this.ataque = ataque;
 	}
 	
-	public int ataquesimples(int ataque){
-           int ataqueSimples=ataque;
-            return  ataqueSimples - getDefesa();
-        }
-        public void ataquecombo(){
-            int ataquecombo; 
-            int dano;
-            ataquecombo = rand.nextInt(this.getAtaque());
-
-            dano =ataquecombo - getDefesa();
-        }
-        public void usarpoder(){
+	public int ataquesimples(int aleatorio){
+      int ataqueSimples=aleatorio;
+      return  ataqueSimples - getDefesa();
+    }
+    public int ataquecombo(int aleatorio){
+            int ataquecombo = aleatorio;
+            int dano =ataquecombo - getDefesa();
+            return dano;
+    }
+    public void usarpoder(){
           int usarpoder; 
           int dano;
-
-          usarpoder = rand.nextInt(this.getPoder());
+          usarpoder =0;
+          //rand.nextInt(this.getPoder());
 
           dano = usarpoder - getDefesa();
-        }
+    }
         
-        public void levarDano(int dano) {
-            this.vida = this.vida - dano;
-        }
+    public void levarDano(int dano) {
+       setVida(getVida()-dano);
+     }
         
         
-        public String toString(){
-            return "\n"+getNome()+"\nVIDA:  "+getVida()+"\nATAQUE:  "+getAtaque()+"\nDEFESA:  "+getDefesa();
-        }
+     public String toString(){
+       return "\n"+getNome()+"\nVIDA:  "+getVida()+"\nATAQUE:  "+getAtaque()+"\nDEFESA:  "+getDefesa();
+    }
         
 }

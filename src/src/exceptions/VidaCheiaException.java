@@ -1,5 +1,5 @@
 
-package src.exceptions;
+package exceptions;
 
 public class VidaCheiaException extends Exception {
 

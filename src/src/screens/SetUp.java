@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package src.screens;
+package screens;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +6,16 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.OverlayLayout;
-import src.Nivel;
-import src.Protagonista;
-import src.Vilao;
-
+import Nivel;
+import Protagonista;
+import Vilao;
 
 public class SetUp extends JFrame implements ActionListener{
-    Nivel nivelUm= new Nivel(new Protagonista("Pessoa", 2),new Vilao("Do Mal", 1));
-   
+	int numeroNivel=0;
+	Protagonista protagonista;
+	Vilao vilao;
+	Nivel nivel;
+	
     public SetUp() {
         defesa_b.addActionListener(this);
         poder_b.addActionListener(this);
@@ -27,13 +24,19 @@ public class SetUp extends JFrame implements ActionListener{
        
     }
     
+    public void setNivel(int nivel, Protagonista protagonista, Vilao vilao) {
+    	this.numeroNivel=nivel;
+    	this.protagonista = protagonista;
+    	this.vilao = vilao;
+    }
+    
     public void actionPerformed (ActionEvent event){
         Random rand = new Random();
         JButton clicked = (JButton) event.getSource();
         if(clicked==ataqueS_b){
-            int dano=nivelUm.getNivel(4);
-            nivelUm.getVilao().levarDano(nivelUm.getProtagonista().ataquesimples(dano));
-            vidaVilao.setText(nivelUm.getVilao().getVida());
+            int dano=nivel.getNivel(4);
+            nivelUm.getVilao().levarDano(nivel.getProtagonista().ataquesimples(dano));
+            vidaVilao.setText(nivel.getVilao().getVida());
             nivelUm.getProtagonista().levarDano(nivelUm.getVilao().getAtaque(dano));
             vidaProtago.setText(nivelUm.getProtagonista().getVida());
         }
