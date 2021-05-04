@@ -1,14 +1,37 @@
 
-package src.screens;
+package src;
 
-public class Loja extends javax.swing.JFrame {
+import exceptions.QuantidadeInsuficienteException;
+import exceptions.SemDinheiroException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
-    public Loja() {
+public class LojaUI extends JFrame implements ActionListener {
+    Loja loja = new Loja();
+    Protagonista protagonista;
+    public LojaUI() {
         initComponents();
     }
 
-    public void setDinheiro(int dinheiro){
-        din_label.setText(String.valueOf(dinheiro));
+    public void setLoja(Protagonista protagonista){
+        this.protagonista=protagonista;
+        din_label.setText(String.valueOf(protagonista.getDinheiro()));
+    }
+    
+    public void actionPerformed(ActionEvent event){
+        Object source = event.getSource();
+        if(source == ataque){
+            try{
+                loja.comprarProduto("ataque", 1);
+                protagonista.aumentarAtaque(loja.buscarProduto("ataque").getPreco());
+            }catch(QuantidadeInsuficienteException qe){
+                qe.printStackTrace();
+            }catch(SemDinheiroException de){
+                de.printStackTrace();
+            }
+        }
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -17,9 +40,9 @@ public class Loja extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        defesa = new javax.swing.JLabel();
+        cura = new javax.swing.JLabel();
+        ataque = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -33,11 +56,11 @@ public class Loja extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         jLabel1.setText("Market");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/shield.png"))); // NOI18N
+        defesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/shield.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/medicine.png"))); // NOI18N
+        cura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/medicine.png"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fist.png"))); // NOI18N
+        ataque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fist.png"))); // NOI18N
 
         jLabel2.setText("Ataque");
 
@@ -58,18 +81,18 @@ public class Loja extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(jLabel4))
+                        .addComponent(cura))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                            .addComponent(ataque)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel2)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(82, 82, 82)
-                                .addComponent(jLabel3))
+                                .addComponent(defesa))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
@@ -90,14 +113,14 @@ public class Loja extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3))
+                    .addComponent(ataque)
+                    .addComponent(defesa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(cura)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26))
@@ -132,31 +155,32 @@ public class Loja extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Loja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LojaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Loja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LojaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Loja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LojaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Loja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LojaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Loja().setVisible(true);
+                new LojaUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ataque;
+    private javax.swing.JLabel cura;
+    private javax.swing.JLabel defesa;
     private javax.swing.JLabel din_label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

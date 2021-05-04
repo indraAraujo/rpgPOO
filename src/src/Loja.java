@@ -1,3 +1,5 @@
+package src;
+
 
 import java.util.LinkedList;
 
@@ -11,15 +13,22 @@ public class Loja{
    }
    public void comprarProduto(String nome, int qnt) throws QuantidadeInsuficienteException{
        for(Produto p: produtos){
-          if(p.getDesc().equals(nome)){
+          if(p.getDescStr().equals(nome)){
                 if(p.getQuantidade()<=qnt){
                    p.setQuantidade(p.getQuantidade()-qnt);
                 } else throw new QuantidadeInsuficienteException(qnt);
            }
        }
     }
+   
+   public Produto buscarProduto(String nome){
+       Produto achado=null;
+       for(Produto p: produtos){
+          if(p.getDescStr().equals(nome)){
+                achado=p;
+           }
+       }
+       return achado;
+   }
         
-	/*public String toString(){
-		return String.format("%s. Quantidade solicitada: %s", produto, quantidade);
-	}*/
 }

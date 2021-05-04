@@ -1,5 +1,5 @@
 
-package src.screens;
+package src;
 
 public class Mapa extends javax.swing.JFrame {
 

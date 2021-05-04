@@ -1,4 +1,7 @@
+package src;
 
+
+import src.Protagonista;
 import java.util.Random;
 
 public class Nivel {
