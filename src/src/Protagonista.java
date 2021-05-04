@@ -1,3 +1,5 @@
+package src;
+
 import exceptions.SemDinheiroException;
 import exceptions.VidaCheiaException;
 
@@ -40,7 +42,7 @@ public class Protagonista extends Personagem{
 	  }else throw new SemDinheiroException(preco);
 	}
 	
-	public void aumentarAtaque(int preco) throws SemDinheiroException{
+	public void aumentarAtaque(double preco) throws SemDinheiroException{
 	    if(getDinheiro()  > preco){
 	       setDinheiro(this.getDinheiro()-preco);
 	       super.setAtaque(super.getAtaque()+1);

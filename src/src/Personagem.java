@@ -1,3 +1,5 @@
+package src;
+
 
 public abstract class Personagem {
     private String nome;
@@ -7,13 +9,13 @@ public abstract class Personagem {
 	private int ataque;
 	//private int nivel;
 	
-	public Personagem(String n, int p) {
+    public Personagem(String n, int p) {
         nome=n;
-		poder = p;
-		ataque = 1;
-		defesa = 1;
-		vida = 5;
-	}
+	poder = p;
+	ataque = 1;
+	defesa = 1;
+	vida = 5;
+    }
         
     public String getNome(){
       return nome;
@@ -23,39 +25,38 @@ public abstract class Personagem {
        nome=n;
     }
 
-	public int getPoder() {
+    public int getPoder() {
 		return poder;
-	}
+    }
 
-	public void setPoder(int poder) {
+    public void setPoder(int poder) {
 		this.poder = poder;
-	}
+    }
 
-	public int getVida() {
+    public int getVida() {
 		return vida;
-	}
+    }
 
-	public void setVida(int vida) {
+    public void setVida(int vida) {
 		this.vida = vida;
-	}
+    }
 
-	public int getDefesa() {
+    public int getDefesa() {
 		return defesa;
-	}
+    }
 
-	public void setDefesa(int defesa) {
+    public void setDefesa(int defesa) {
 		this.defesa = defesa;
-	}
+    }
 
-	public int getAtaque() {
+    public int getAtaque() {
 		return ataque;
-	}
+    }
 
-	public void setAtaque(int ataque) {
+    public void setAtaque(int ataque) {
 		this.ataque = ataque;
-	}
-	
-	public int ataquesimples(int aleatorio){
+    }
+    public int ataquesimples(int aleatorio){
       int ataqueSimples=aleatorio;
       return  ataqueSimples - getDefesa();
     }
