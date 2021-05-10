@@ -1,51 +1,142 @@
 
 package src;
 
-public class Mapa extends javax.swing.JFrame {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
+public class Mapa extends JFrame implements ActionListener {
+    Protagonista protagonista;
     public Mapa() {
         initComponents();
+        nivel1.addActionListener(this);
+        nivel2.addActionListener(this);
+        nivel3.addActionListener(this);
+        nivel4.addActionListener(this);
+        loja.addActionListener(this);
+
     }
     
+    public void setMapa(Protagonista protagonista){
+      this.protagonista=protagonista;  
+    }
+    
+    public void actionPerformed(ActionEvent event){
+        JButton clicked = (JButton) event.getSource();
+        if(clicked==nivel1){
+            Batalha nivelUm = new Batalha();
+            nivelUm.setNivel(5, protagonista, new Vilao("Vilao 1"));
+            nivelUm.setVisible(true);
+            this.dispose();
+        }else if(clicked==nivel2){
+            Batalha nivelDois = new Batalha();
+            nivelDois.setNivel(6, protagonista, new Vilao("Vilao 2"));
+            nivelDois.setVisible(true);
+            this.dispose();
+        }else if(clicked==nivel3){
+            Batalha nivelTres = new Batalha();
+            nivelTres.setNivel(7, protagonista, new Vilao("Vilao 3"));
+            nivelTres.setVisible(true);
+            this.dispose();
+        }else if(clicked==nivel4){
+            Batalha nivelQuatro = new Batalha();
+            nivelQuatro.setNivel(8, protagonista, new Vilao("Vilao 4"));
+            nivelQuatro.setVisible(true);
+            this.dispose();
+        }else if(clicked==loja){
+            LojaUI loja = new LojaUI();
+            loja.setLoja(protagonista);
+            loja.setVisible(true);
+            this.dispose();
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        nivel1 = new javax.swing.JButton();
+        nivel2 = new javax.swing.JButton();
+        nivel3 = new javax.swing.JButton();
+        nivel4 = new javax.swing.JButton();
+        loja = new javax.swing.JButton();
 
-        jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(2, 2, 39));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/map.jpg"))); // NOI18N
+        nivel1.setText("Nivel 1");
+        nivel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nivel1ActionPerformed(evt);
+            }
+        });
 
-        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        nivel2.setText("Nivel 2");
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+        nivel3.setText("Nivel 3");
+
+        nivel4.setText("Nivel 4");
+
+        loja.setText("Loja");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(nivel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(nivel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nivel3)
+                    .addComponent(nivel2))
+                .addGap(37, 37, 37))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loja)
+                .addContainerGap())
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nivel3)
+                        .addGap(34, 34, 34))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(nivel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)))
+                .addComponent(nivel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nivel1)
+                .addGap(43, 43, 43)
+                .addComponent(loja)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nivel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nivel1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nivel1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -80,7 +171,11 @@ public class Mapa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loja;
+    private javax.swing.JButton nivel1;
+    private javax.swing.JButton nivel2;
+    private javax.swing.JButton nivel3;
+    private javax.swing.JButton nivel4;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,11 +2,9 @@ package src;
 public class Produto{
 	private double preco;
 	private int quantidade;
-        private Descricao desc;
+        private Enum desc;
 
-    public Produto ( double p, int quant, Descricao desc){
-	preco = p;
-	quantidade= quant;
+    public Produto ( Enum desc){
         this.desc = desc;
     }
 
@@ -27,20 +25,16 @@ public class Produto{
     }
 
     public String getDescStr(){
-        Descricao desc = getDesc();
-        return String.valueOf(desc);
+        return String.valueOf(getDesc());
     }
-    public Descricao getDesc() {
+    public Enum getDesc() {
         return desc;
     }
     
-    public void setDesc(Descricao desc) {
+    public void setDesc(Enum desc) {
            this.desc = desc;
     }
-             
-    public String toString(){
-	return String.format("Preço: MOEDADOJOGO %.2f. Estoque: %d", preco, quantidade);
-    }
+
 }
 
 

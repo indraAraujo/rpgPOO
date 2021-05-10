@@ -1,6 +1,4 @@
 package src;
-
-
 import src.Protagonista;
 import java.util.Random;
 
@@ -16,7 +14,7 @@ public class Nivel {
     }
     
     public int getNivel(int capacidade){
-        nivel = rand.nextInt((capacidade - 1) + 1) + 1;
+        nivel = rand.nextInt((capacidade - 0) + 0) + 0;
         return nivel;
     }
 

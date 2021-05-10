@@ -7,11 +7,10 @@ public abstract class Personagem {
 	private int vida;
 	private int defesa;
 	private int ataque;
-	//private int nivel;
 	
-    public Personagem(String n, int p) {
+    public Personagem(String n) {
         nome=n;
-	poder = p;
+	//poder = p;
 	ataque = 1;
 	defesa = 1;
 	vida = 5;
@@ -57,30 +56,17 @@ public abstract class Personagem {
 		this.ataque = ataque;
     }
     public int ataquesimples(int aleatorio){
-      int ataqueSimples=aleatorio;
-      return  ataqueSimples - getDefesa();
+      int dano=aleatorio*getAtaque();
+      return  dano;
     }
     public int ataquecombo(int aleatorio){
-            int ataquecombo = aleatorio;
-            int dano =ataquecombo - getDefesa();
+            int dano = aleatorio*getAtaque();
             return dano;
     }
-    public void usarpoder(){
-          int usarpoder; 
-          int dano;
-          usarpoder =0;
-          //rand.nextInt(this.getPoder());
-
-          dano = usarpoder - getDefesa();
-    }
-        
-    public void levarDano(int dano) {
-       setVida(getVida()-dano);
+    
+    public void levarDano(int aleatorio) {
+       setVida(getVida()-(aleatorio/getDefesa()));
      }
         
-        
-     public String toString(){
-       return "\n"+getNome()+"\nVIDA:  "+getVida()+"\nATAQUE:  "+getAtaque()+"\nDEFESA:  "+getDefesa();
-    }
-        
+           
 }
