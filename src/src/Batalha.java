@@ -135,6 +135,7 @@ public class Batalha extends JFrame implements ActionListener {
             }catch(SemProdutoException se){
                 JOptionPane.showMessageDialog(null, "Você não tem cura na sua mochila!");
             }
+            setVida();
         }
             
     }

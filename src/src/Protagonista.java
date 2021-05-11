@@ -23,16 +23,19 @@ public class Protagonista extends Personagem{
     }
         
    public void usarCura()throws VidaCheiaException, SemProdutoException{
-       System.out.println(mochila);
+       boolean tem=false;
        for(Produto p: mochila){
-           if(p.getDescStr().equals("CURA")){
+           if(p.getDescStr().contains("CURA")){
               if(super.getVida()==5) throw new VidaCheiaException();
-            else{
-              super.setVida(5);
-              mochila.remove(p);
-            }
-        }else throw new SemProdutoException();   
+                else{
+                  super.setVida(5);
+                  mochila.remove(p);
+                }
+              tem=true;
+                 break;
+           }  
        }
+       if(tem==false) throw new SemProdutoException(); 
     }
    
     public void comprarCura(Produto curaComprar)throws SemDinheiroException{
