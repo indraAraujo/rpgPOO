@@ -14,6 +14,7 @@ public class PosBatalha extends JFrame implements ActionListener{
     Random rand = new Random();
     Itens itemUm, itemDois, itemTres;
     Loja loja;
+    int click = 0;
     
     public PosBatalha() {
         initComponents();
@@ -52,13 +53,15 @@ public class PosBatalha extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent event){
         JButton clicked = (JButton) event.getSource();
-        if(clicked==coletar){
+       
+        if(clicked==coletar && click == 0){
             protagonista.guardarItem(itemUm);
             protagonista.guardarItem(itemDois);
             protagonista.guardarItem(itemTres);          
             Mochila mochila = new Mochila();
             mochila.setMochila(protagonista);
             mochila.setVisible(true);
+            click = 1;
         }else if(clicked==proximoNivel){
             Mapa mapa = new Mapa();
             mapa.setMapa(protagonista);
@@ -78,6 +81,8 @@ public class PosBatalha extends JFrame implements ActionListener{
         item1 = new javax.swing.JLabel();
         item2 = new javax.swing.JLabel();
         item3 = new javax.swing.JLabel();
+
+        setTitle("BAU");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
