@@ -35,6 +35,9 @@ public class Produto{
            this.desc = desc;
     }
 
+    public String toString(){
+        return getDescStr();
+    }
 }
 
 

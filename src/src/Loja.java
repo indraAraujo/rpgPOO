@@ -21,4 +21,7 @@ public class Loja{
     }
        return achado;
     } 
+   public void removerProduto(Produto produto){
+       produtos.remove(produto);
+   }
 }

@@ -21,9 +21,14 @@ public class LojaUI extends JFrame implements ActionListener {
         this.protagonista=protagonista;
         this.loja=loja;
         din_label.setText(String.valueOf(protagonista.getDinheiro()));
+        ataqueProtagonista.setText(String.valueOf(protagonista.getAtaque()));
+        defesaProtagonista.setText(String.valueOf(protagonista.getDefesa()));
+
     }
-    public void atualizarDinheiro(){
+    public void atualizar(){
         din_label.setText(String.valueOf(protagonista.getDinheiro()));
+        ataqueProtagonista.setText(String.valueOf(protagonista.getAtaque()));
+        defesaProtagonista.setText(String.valueOf(protagonista.getDefesa()));
     }
         
     public void actionPerformed(ActionEvent event){
@@ -57,6 +62,8 @@ public class LojaUI extends JFrame implements ActionListener {
         din_label = new javax.swing.JLabel();
         voltar = new javax.swing.JButton();
         mochila_b = new javax.swing.JButton();
+        ataqueProtagonista = new javax.swing.JLabel();
+        defesaProtagonista = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(2, 2, 39));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -104,34 +111,46 @@ public class LojaUI extends JFrame implements ActionListener {
         mochila_b.setBackground(new java.awt.Color(2, 2, 39));
         mochila_b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/backpack (1).png"))); // NOI18N
 
+        ataqueProtagonista.setForeground(new java.awt.Color(255, 255, 255));
+        ataqueProtagonista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fist (1).png"))); // NOI18N
+
+        defesaProtagonista.setForeground(new java.awt.Color(255, 255, 255));
+        defesaProtagonista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/medical-insurance P.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ataque)
-                    .addComponent(jLabel2))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(cura)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(defesa)
-                            .addComponent(jLabel6)))
-                    .addComponent(jLabel1))
-                .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(voltar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(din_label, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mochila_b)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ataqueProtagonista, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ataque)
+                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(defesa)
+                                    .addComponent(jLabel6)))
+                            .addComponent(jLabel1)
+                            .addComponent(cura)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel7))
+                            .addComponent(defesaProtagonista, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(110, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mochila_b)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,17 +168,23 @@ public class LojaUI extends JFrame implements ActionListener {
                                 .addComponent(defesa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ataqueProtagonista))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(din_label)
                         .addGap(3, 3, 3)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                        .addComponent(cura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addGap(20, 20, 20)
-                        .addComponent(mochila_b)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cura)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addGap(20, 20, 20)
+                                .addComponent(mochila_b))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(241, 241, 241)
+                                .addComponent(defesaProtagonista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
@@ -180,7 +205,7 @@ public class LojaUI extends JFrame implements ActionListener {
     private void comprarAtaque(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprarAtaque
         try{
                 protagonista.comprarAtaque(loja.comprarProduto("ATAQUE"));
-                atualizarDinheiro();
+                atualizar();
             }catch(SemDinheiroException de){
                 de.printStackTrace();
             }
@@ -189,7 +214,7 @@ public class LojaUI extends JFrame implements ActionListener {
     private void comprarDefesa(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprarDefesa
          try{
                 protagonista.comprarDefesa(loja.comprarProduto("DEFESA"));
-                atualizarDinheiro();
+                atualizar();
             }catch(SemDinheiroException de){
                 de.printStackTrace();
             }
@@ -198,7 +223,7 @@ public class LojaUI extends JFrame implements ActionListener {
     private void comprarCura(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comprarCura
          try{
                 protagonista.comprarCura(loja.comprarProduto("CURA"));
-                atualizarDinheiro();
+                atualizar();
             }catch(SemDinheiroException de){
                 de.printStackTrace();
             }
@@ -240,8 +265,10 @@ public class LojaUI extends JFrame implements ActionListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ataque;
+    private javax.swing.JLabel ataqueProtagonista;
     private javax.swing.JLabel cura;
     private javax.swing.JLabel defesa;
+    private javax.swing.JLabel defesaProtagonista;
     private javax.swing.JLabel din_label;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

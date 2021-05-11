@@ -64,7 +64,7 @@ public class Batalha extends JFrame implements ActionListener {
                 this.dispose();
             }else{
                JOptionPane.showMessageDialog(null, "VOCÊ GANHOU A BATALHA");
-                protagonista.setDinheiro(protagonista.getDinheiro()+2.5);
+                protagonista.setDinheiro(protagonista.getDinheiro()+3.00);
                 PosBatalha pos = new PosBatalha();
                 pos.setPos(protagonista, numeroNivel, loja);
                 pos.setVisible(true); 

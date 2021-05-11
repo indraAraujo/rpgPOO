@@ -23,45 +23,34 @@ public class Protagonista extends Personagem{
     }
         
    public void usarCura()throws VidaCheiaException, SemProdutoException{
-       Produto cura = new Produto(Descricao.CURA);
-       if(mochila.contains(cura)==true){
-            if(super.getVida()==5) throw new VidaCheiaException();
+       System.out.println(mochila);
+       for(Produto p: mochila){
+           if(p.getDescStr().equals("CURA")){
+              if(super.getVida()==5) throw new VidaCheiaException();
             else{
               super.setVida(5);
-              for(Produto p: mochila){
-                  if(p.equals(cura)){
-                      p.setQuantidade(p.getQuantidade()-1);
-                  }
-              }
+              mochila.remove(p);
             }
-       }else throw new SemProdutoException();
+        }else throw new SemProdutoException();   
+       }
     }
    
     public void comprarCura(Produto curaComprar)throws SemDinheiroException{
        Produto cura = new Produto(Descricao.CURA);
-       if(getDinheiro() > curaComprar.getPreco()){
+       if(getDinheiro() >= curaComprar.getPreco()){
 	      setDinheiro(getDinheiro()-curaComprar.getPreco());
-	      if(mochila.contains(cura)==true){
-                for(Produto p: mochila){
-                  if(p.equals(cura)){
-                      p.setQuantidade(p.getQuantidade()+1);
-                  }
-                 }
-            }else{
-                  cura.setQuantidade(1);
-                  mochila.add(cura);
-            }
+              mochila.add(cura);
 	}else throw new SemDinheiroException(curaComprar.getPreco());
     }
 	
     public void comprarAtaque(Produto ataqueComprar)throws SemDinheiroException{
-       if(getDinheiro() > ataqueComprar.getPreco()){
+       if(getDinheiro() >= ataqueComprar.getPreco()){
 	      setDinheiro(getDinheiro()-ataqueComprar.getPreco());
 	      setAtaque(getAtaque()+1);
 	}else throw new SemDinheiroException(ataqueComprar.getPreco());
     }	
     public void comprarDefesa(Produto defesaComprar)throws SemDinheiroException{
-       if(getDinheiro() > defesaComprar.getPreco()){
+       if(getDinheiro() >= defesaComprar.getPreco()){
 	      setDinheiro(getDinheiro()-defesaComprar.getPreco());
 	      setDefesa(getDefesa()+1);
 	}else throw new SemDinheiroException(defesaComprar.getPreco());
@@ -69,7 +58,7 @@ public class Protagonista extends Personagem{
     
     public void guardarItem(Itens item){
         if(String.valueOf(item).equals("DINHEIRO")){
-            setDinheiro(getDinheiro()+1);
+            setDinheiro(getDinheiro()+3);
         }else{
             Produto itemAdd = new Produto(item);
             mochila.add(itemAdd);
