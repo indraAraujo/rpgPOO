@@ -22,8 +22,8 @@ public class Main {
         produto.setPreco(4.00);
         loja.adicionarProduto(produto);
         
-        System.out.println(loja.produtos);
         Login start = new Login();
+        start.repasseLoja(loja);
         start.setVisible(true);
         
     }

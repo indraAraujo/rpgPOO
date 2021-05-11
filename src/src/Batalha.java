@@ -20,21 +20,25 @@ public class Batalha extends JFrame implements ActionListener {
 	Protagonista protagonista;
 	Vilao vilao;
 	Nivel nivel;
+        Loja loja;
     public Batalha() {
         initComponents();
         
         curar_button.addActionListener(this);
         ataqueS_button.addActionListener(this);
         ataqueC_button.addActionListener(this);
-    }
+    } 
 
-   public void setNivel(int nivel, Protagonista protagonista, Vilao vilao) {
+   public void setNivel(int nivel, Protagonista protagonista, Vilao vilao, Loja loja) {
     	this.numeroNivel=nivel;
     	this.protagonista = protagonista;
     	this.vilao = vilao;
         this.nivel = new Nivel(protagonista, vilao);
-        vidaVilao.setText(String.valueOf(vilao.getVida()));//atualiza vida do vilao
-        vidaProtagonista.setText(String.valueOf(protagonista.getVida()));
+        this.loja=loja;
+        setVida();
+        nomeVilao.setText(vilao.getNome());
+        nomeProtagonista.setText(protagonista.getNome());
+        
     }
     
     public void checarVida(){
@@ -43,8 +47,12 @@ public class Batalha extends JFrame implements ActionListener {
             protagonista.reset();
             Mapa mapa = new Mapa();
             mapa.setMapa(protagonista);
+            mapa.repasseLoja(loja);
             mapa.setVisible(true);
             this.dispose();
+        }else{
+            vilaoMorto();
+            setVida();
         }
     }
     
@@ -56,12 +64,50 @@ public class Batalha extends JFrame implements ActionListener {
                 this.dispose();
             }else{
                JOptionPane.showMessageDialog(null, "VOCÊ GANHOU A BATALHA");
+                protagonista.setDinheiro(protagonista.getDinheiro()+2.5);
                 PosBatalha pos = new PosBatalha();
-                pos.setPos(protagonista, numeroNivel);
+                pos.setPos(protagonista, numeroNivel, loja);
                 pos.setVisible(true); 
                 this.dispose();
             }
             
+        }
+    }
+    
+    public void setVida(){
+        switch(protagonista.getVida()){
+            case 1:
+                vidaProtagonista.setText("*");
+                break;
+            case 2:
+                vidaProtagonista.setText("* *");
+                break;
+            case 3:
+                vidaProtagonista.setText("* * *");
+                break;
+            case 4:
+                vidaProtagonista.setText("* * * *");
+                break;
+            case 5:
+                vidaProtagonista.setText("* * * * *");
+                break;
+        }
+        switch(vilao.getVida()){
+            case 1:
+                vidaVilao.setText("*");
+                break;
+            case 2:
+                vidaVilao.setText("* *");
+                break;
+            case 3:
+                vidaVilao.setText("* * *");
+                break;
+            case 4:
+                vidaVilao.setText("* * * *");
+                break;
+            case 5:
+                vidaVilao.setText("* * * * *");
+                break;
         }
     }
     
@@ -74,7 +120,6 @@ public class Batalha extends JFrame implements ActionListener {
             nivel.protagonista.levarDano(vilao.getAtaque());//vilao ataca -> gera dano -> protagonista leva dano
             vidaProtagonista.setText(String.valueOf(protagonista.getVida()));//atualiza vido do protagonista
             checarVida();
-            vilaoMorto();
         }else if (clicked==ataqueC_button){
             int dano=nivel.getNivel(numeroNivel);//define o intervalo para o número aleatório
             nivel.getVilao().levarDano(nivel.getProtagonista().ataquesimples(dano*2));//protagonista ataca -> gera dano -> vilao leva dano
@@ -82,7 +127,6 @@ public class Batalha extends JFrame implements ActionListener {
             nivel.getProtagonista().levarDano(nivel.getVilao().getAtaque());//vilao ataca -> gera dano -> protagonista leva dano
             vidaProtagonista.setText(String.valueOf(nivel.getProtagonista().getVida()));//atualiza vido do protagonista
             checarVida();
-            vilaoMorto();
         }else if(clicked==curar_button){
             try{
                 protagonista.usarCura();
@@ -104,62 +148,96 @@ public class Batalha extends JFrame implements ActionListener {
         vidaProtagonista = new javax.swing.JLabel();
         vidaVilao = new javax.swing.JLabel();
         curar_button = new javax.swing.JButton();
+        nomeVilao = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        nomeProtagonista = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(2, 2, 39));
 
-        ataqueS_button.setText("Atacar");
+        ataqueS_button.setBackground(new java.awt.Color(2, 2, 39));
+        ataqueS_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fist (1).png"))); // NOI18N
 
-        ataqueC_button.setText("Combo");
+        ataqueC_button.setBackground(new java.awt.Color(153, 0, 0));
+        ataqueC_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/fist (1).png"))); // NOI18N
 
+        vidaProtagonista.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         vidaProtagonista.setForeground(new java.awt.Color(255, 255, 255));
 
+        vidaVilao.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         vidaVilao.setForeground(new java.awt.Color(255, 255, 255));
 
-        curar_button.setText("Curar");
+        curar_button.setBackground(new java.awt.Color(2, 2, 39));
+        curar_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/medicine (1).png"))); // NOI18N
+
+        nomeVilao.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/heart.png"))); // NOI18N
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/heart.png"))); // NOI18N
+
+        nomeProtagonista.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(ataqueC_button))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(vidaProtagonista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(curar_button)
+                                        .addGap(65, 65, 65)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(vidaVilao, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(nomeProtagonista, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                                .addComponent(nomeVilao, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(vidaProtagonista, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
-                            .addComponent(vidaVilao, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(curar_button)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(ataqueS_button)
-                                    .addGap(160, 160, 160)
-                                    .addComponent(ataqueC_button)))
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addContainerGap()))
+                    .addComponent(ataqueS_button)
+                    .addContainerGap(338, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nomeVilao, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeProtagonista, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(vidaProtagonista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(vidaVilao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(curar_button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(ataqueC_button)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(vidaVilao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(vidaProtagonista, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(curar_button)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ataqueS_button, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(ataqueC_button)
-                            .addGap(8, 8, 8)))
+                    .addContainerGap(266, Short.MAX_VALUE)
+                    .addComponent(ataqueS_button)
                     .addContainerGap()))
         );
 
@@ -215,7 +293,11 @@ public class Batalha extends JFrame implements ActionListener {
     private javax.swing.JButton ataqueC_button;
     private javax.swing.JButton ataqueS_button;
     private javax.swing.JButton curar_button;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nomeProtagonista;
+    private javax.swing.JLabel nomeVilao;
     private javax.swing.JLabel vidaProtagonista;
     private javax.swing.JLabel vidaVilao;
     // End of variables declaration//GEN-END:variables

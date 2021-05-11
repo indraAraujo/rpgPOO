@@ -13,6 +13,7 @@ public class PosBatalha extends JFrame implements ActionListener{
     int numeroNivel=0;
     Random rand = new Random();
     Itens itemUm, itemDois, itemTres;
+    Loja loja;
     
     public PosBatalha() {
         initComponents();
@@ -26,9 +27,10 @@ public class PosBatalha extends JFrame implements ActionListener{
         itemTres=itens();
         item3.setText(String.valueOf(itemTres));
     }
-    public void setPos(Protagonista protagonista, int numeroNivel) {
+    public void setPos(Protagonista protagonista, int numeroNivel, Loja loja) {
         this.protagonista=protagonista;
         this.numeroNivel=numeroNivel;
+        this.loja=loja;
     }
     public Itens itens(){
         Itens item=null;
@@ -60,6 +62,7 @@ public class PosBatalha extends JFrame implements ActionListener{
         }else if(clicked==proximoNivel){
             Mapa mapa = new Mapa();
             mapa.setMapa(protagonista);
+            mapa.repasseLoja(loja);
             mapa.setVisible(true);
             this.dispose();
         }
@@ -114,10 +117,11 @@ public class PosBatalha extends JFrame implements ActionListener{
                 .addGap(18, 18, 18)
                 .addComponent(coletar)
                 .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(item1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(item2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(item3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(item3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(item1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(item2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(proximoNivel)
                 .addContainerGap())
